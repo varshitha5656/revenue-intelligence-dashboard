@@ -14,3 +14,11 @@ Revenue Intelligence Dashboard: Sales pattern analysis &amp; business insights u
 	•	Added Profit Margin calculations
 	•	Exported charts to images/ folder
 	•	Updated EDA notebook with additional insights
+## Day 3 Progress
+	•	Created a basic Streamlit app (app.py) to display analysis results.
+	•	Loaded sales dataset inside Streamlit using pandas.
+	•	Displayed Monthly Revenue Trend chart in the app.
+	•	Added product/category-level revenue insights.
+	•	Calculated Profit and Profit Margin for better business understanding.
+	•	Shown dataset preview inside the dashboard for clarity.
+	•	Ran the Streamlit app locally and verified output in browser.
