@@ -9,10 +9,17 @@ st.write("Simple sales analysis using Python")
 df = pd.read_csv("data/sales.csv")
 df["OrderDate"] = pd.to_datetime(df["OrderDate"])
 
+st.sidebar.header("Filters")
+
+categories = ["All"] + sorted(df["Category"].dropna().unique().tolist())
+selected_category = st.sidebar.selectbox("Select Category", categories)
+
+if selected_category != "All":
+    df = df[df["Category"] == selected_category]
 # Monthly revenue
 monthly = (
     df.set_index("OrderDate")
-      .resample("M")["Sales"]
+      .resample("ME")["Sales"]
       .sum()
       .reset_index()
 )
