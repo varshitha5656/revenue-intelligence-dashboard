@@ -28,3 +28,9 @@ Revenue Intelligence Dashboard: Sales pattern analysis &amp; business insights u
 - Connected Pandas data processing with Streamlit UI
 - Displayed interactive Monthly Revenue Trend
 - Added live dataset preview for validation
+## Day 5 Progress
+- Added metric toggle (Sales / Profit)
+- Implemented KPI cards for total metric and total orders
+- Enabled category and region-based filtering
+- Made monthly trend chart reactive to selected metric
+- Improved dashboard interactivity using Streamlit components
