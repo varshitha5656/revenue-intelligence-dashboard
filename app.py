@@ -19,20 +19,26 @@ st.sidebar.header("Filters")
 categories = ["All"] + sorted(df["Category"].dropna().unique().tolist())
 selected_category = st.sidebar.selectbox("Select Category", categories)
 
-if selected_category != "All":
-    df = df[df["Category"] == selected_category]
-    regions = ["All"] + sorted(df["Region"].dropna().unique().tolist())
+regions = ["All"] + sorted(df["Region"].dropna().unique().tolist())
 selected_region = st.sidebar.selectbox("Select Region", regions)
 
+filtered_df = df.copy()
+
+if selected_category != "All":
+    filtered_df = filtered_df[filtered_df["Category"] == selected_category]
+
 if selected_region != "All":
-    df = df[df["Region"] == selected_region]
-# Monthly revenue
+    filtered_df = filtered_df[filtered_df["Region"] == selected_region]
+
 monthly = (
-    df.groupby(df["OrderDate"].dt.to_period("M"))[metric]
-      .sum()
-      .reset_index()
+    filtered_df
+    .set_index("OrderDate")
+    .resample("M")[metric]
+    .sum()
+    .reset_index()
 )
 
+monthly["OrderDate"] = monthly["OrderDate"].astype(str)
 col1, col2 = st.columns(2)
 
 col1.metric(
@@ -59,5 +65,3 @@ ax.set_ylabel(metric)
 ax.set_title(f"Monthly {metric} Trend")
 
 st.pyplot(fig)
-st.write("Dataset Preview")
-st.dataframe(df.head())
