@@ -34,3 +34,9 @@ Revenue Intelligence Dashboard: Sales pattern analysis &amp; business insights u
 - Enabled category and region-based filtering
 - Made monthly trend chart reactive to selected metric
 - Improved dashboard interactivity using Streamlit components
+## Day 6 Progress
+- Added dynamic category and region filters
+- Implemented metric toggle (Sales / Profit)
+- Fixed filtering logic for "All" selections
+- Stabilized monthly aggregation logic
+- Debugged runtime NameError and state issues
