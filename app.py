@@ -37,18 +37,21 @@ monthly = (
     .sum()
     .reset_index()
 )
+if monthly.empty:
+    st.warning("No data available for the selected filters.")
+    st.stop()
+monthly["OrderDate"] = monthly["OrderDate"].dt.strftime("%Y-%m")
 
-monthly["OrderDate"] = monthly["OrderDate"].astype(str)
 col1, col2 = st.columns(2)
 
 col1.metric(
     label=f"Total {metric}",
-    value=f"{df[metric].sum():,.0f}"
+    value=f"{filtered_df[metric].sum():,.0f}"
 )
 
 col2.metric(
     label="Total Orders",
-    value=df.shape[0]
+    value=filtered_df.shape[0]
 )
 st.subheader("Monthly Revenue Trend")
 
@@ -65,3 +68,6 @@ ax.set_ylabel(metric)
 ax.set_title(f"Monthly {metric} Trend")
 
 st.pyplot(fig)
+ax.grid(alpha=0.3)
+ax.tick_params(axis='x', rotation=45)
+plt.tight_layout()
